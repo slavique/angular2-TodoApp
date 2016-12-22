@@ -1,0 +1,13 @@
+<div class="new-task">
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(newtodo)">
+    <input #newtodo placeholder="what you plan to do" id="_title"
+    />
+    <button type="submit">add new task</button>
+  </form>
+</div>
+
+<div *ngFor="let todo of todos">
+  <div class="todo" [style.margin]="todo.margin">
+    {{todo.title}}
+  </div>
+</div>
