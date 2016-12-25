@@ -1,13 +1,24 @@
 <div class="new-task">
-  <form #myForm="ngForm" (ngSubmit)="onSubmit(newtodo)">
-    <input #newtodo placeholder="what you plan to do" id="_title"
-    />
-    <button type="submit">add new task</button>
+  <form class="new-task__form" #myForm="ngForm" (ngSubmit)="onSubmit(newtodotitle, date, time)">
+    <md-input-container>
+      <input class="new-task__form--title" md-input #newtodotitle placeholder="what you plan to do">
+    </md-input-container><br>
+    <md-input-container align="end">
+      <input md-input #date type="date" placeholder="date">
+    </md-input-container>
+    <md-input-container align="end">
+      <input md-input #time type="time"  placeholder="time">
+
+    </md-input-container><br>
+    <button class="new-task__form--button" type="submit" md-raised-button color="primary">add new task</button>
   </form>
 </div>
 
 <div *ngFor="let todo of todos">
   <div class="todo" [style.margin]="todo.margin">
-    {{todo.title}}
+    <p class="todo-content">
+      {{todo.title}}<br><span class="todo-time">{{todo.time}}</span>
+    </p>
+    <span class='shadow'></span>
   </div>
 </div>

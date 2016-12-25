@@ -1,0 +1,36 @@
+.navbar{
+  box-shadow: 2px 2px 2px grey;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+.navbar:after :before{
+  box-sizing: inherit;
+}
+.active{
+  background-color: #2979FF;
+  border-right: 1px solid #424242;
+  border-left: 1px solid #424242;
+}
+.list-item{
+  float: left;
+  line-height: 150em;
+  width: inherit;
+}
+.list-item a{
+  padding: 3em;
+  width: inherit;
+  display: block;
+  text-decoration: none;
+  color: #FAFAFA;
+}
+//.list-item::after, ::before{
+//  box-sizing: inherit;
+//}
+//
+//a{
+//  font-size: 2em;
+//  text-decoration: none;
+//  color: #FAFAFA;
+//}

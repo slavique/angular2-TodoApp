@@ -1,14 +1,8 @@
 import {Todo} from "./todo";
 
 export const TODOS: Todo[] = [
-  //{ title: "Wash dishes", margin: '2em 0em 0em 10em' },
-  //{ title: "Walk the dog", margin: '5em 0em 0em 50em' },
-  //{ title: "Make homework", margin: '20em 0em 0em 30em' },
-  //{ title: "Buy food", margin: '15em 0em 0em 15em'}
-
-
-  new Todo("Wash dishes", 5, 10),
-  new Todo("Walk the dog", 3, 25),
-  new Todo("Get homework done", 25, 6),
-  new Todo("Buy food", 15, 30)
+  new Todo("Wash dishes", 5, 10, "2016-13-02", "15:24"),
+  new Todo("Walk the dog", 25, 15, "2016-13-12", "23:23"),
+  new Todo("Get homework done", 40, 40, "2016-25-12", "03:18"),
+  new Todo("Buy food", 15, 70, "2016-09-18", "17:38")
 ];

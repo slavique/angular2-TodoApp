@@ -14,7 +14,27 @@ export class DashboardComponent implements OnInit {
 
   constructor(private todoService: TodoService) {}
 
-  getRandom(min: number, max: number) {
+  getRandomTop(min: number, max: number) {
+    let margin = Math.floor(Math.random() * (max - min + 1) + min);
+    //console.log("margin: " + margin);
+    //
+    ////checkForInterception: {
+    //  for (let i = 0; i < this.todos.length; i++){
+    //    console.log("this.todos[i].marginTop: " + this.todos[i].marginTop)
+    //
+    //    if (margin > this.todos[i].marginTop && margin < this.todos[i].marginTop + 11) {
+    //      margin += 7;
+    //      console.log("margin incremented;###############")
+    //      //continue checkForInterception;
+    //    } else if (margin + 11 > this.todos[i].marginTop && margin + 11 < this.todos[i].marginTop + 11) {
+    //      margin -= 7;
+    //      console.log("margin decremented###############")
+    //    }
+    //  }
+    ////}
+    return margin;
+  }
+  getRandomLeft(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
@@ -22,10 +42,13 @@ export class DashboardComponent implements OnInit {
     this.todoService.getTodos().then((todos: Todo[]) => this.todos = todos);
   }
 
-  onSubmit(newtodo) {
-    this.newTodo = new Todo(newtodo.value, this.getRandom(-2, 33), this.getRandom(-2, 85));
+  onSubmit(title, date, time) {
+    //console.log(date.value);
+    //console.log(time.value);
+    this.newTodo = new Todo(title.value, this.getRandomTop(1, 35), this.getRandomLeft(1, 87), date.value, time.value);
+    //console.log('this.newTodo" ' + this.newTodo.dateObj);
     this.todoService.insertTodo(this.newTodo);
-    newtodo.value = "";
+    title.value = "";
   }
 
   ngOnInit(): any {

@@ -1,0 +1,16 @@
+.todo{
+  border-bottom: 1px solid grey;
+}
+.todo-title{
+  transition-duration: 0.5s;
+}
+.todo-title:hover{
+  color: #0D47A1;
+  font-weight: bold;
+  padding-left: 10px;
+}
+.delete-btn{
+color: white;
+background-color: #F4511E;
+margin-right: 100px;
+}

@@ -1,5 +1,8 @@
-<ul *ngFor="let todo of todos">
-  <li class="todo">
-    {{todo.title}}
-  </li>
-</ul>
+<md-list *ngFor="let todo of todos">
+  <md-list-item class="todo">
+    <button md-raised-button class="delete-btn">DELETE</button>
+    <span class="todo-title">{{todo.title}}</span>
+
+  </md-list-item>
+
+</md-list>
