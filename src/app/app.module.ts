@@ -10,12 +10,22 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 
 import {TodoService} from "./todo.service";
 import {AppRoutingModule} from "./app-routing.module";
+import { MotivatingDudeComponent } from './motivating-dude/motivating-dude.component';
+import { BodyComponent } from './motivating-dude/body/body.component';
+import { EyesComponent } from './motivating-dude/eyes/eyes.component';
+import { MouthComponent } from './motivating-dude/mouth/mouth.component';
+import { ShirtComponent } from './motivating-dude/shirt/shirt.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    TodoListComponent
+    TodoListComponent,
+    MotivatingDudeComponent,
+    BodyComponent,
+    EyesComponent,
+    MouthComponent,
+    ShirtComponent
   ],
   imports: [
     BrowserModule,

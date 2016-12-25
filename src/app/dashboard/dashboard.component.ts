@@ -18,9 +18,10 @@ export class DashboardComponent implements OnInit {
   private margins = [{top: 5, left: 10},
     {top: 25, left: 15},
     {top: 41, left: 40},
-    {top: 20, left: 75},
+    {top: 7, left: 40},
     {top: 5, left: 70},
-    {top: 41, left: 60}
+    {top: 39, left: 7},
+    {top: 36, left: 57}
   ];
 
   constructor(private todoService: TodoService) {}
@@ -40,17 +41,17 @@ export class DashboardComponent implements OnInit {
   }
 
   onSubmit(title, date, time) {
-    let marginTop: number = 38;
-    let marginLeft: number = 5;
+    let marginTop: number = this.margins[6].top;
+    let marginLeft: number = this.margins[6].left;
     for (let i = 0; i < this.margins.length -1; i++) {
-      if (i == this.filteredTodos.length -1) {
+      if (i == this.filteredTodos.length) {
         marginTop = this.margins[i].top;
         marginLeft = this.margins[i].left;
       }
     }
     this.newTodo = new Todo(title.value, marginTop, marginLeft, date.value, time.value);
-    console.log('this.newTodo.dateObj.getTime(): ' + this.newTodo.dateObj.getTime())
-    if (Math.abs(new Date().getTime() - this.newTodo.dateObj.getTime()) < 36000000) {
+    console.log('this.newTodo.dateObj.getTime(): ' + this.newTodo.dateObj.getTime());
+    if (Math.abs(new Date().getTime() - this.newTodo.dateObj.getTime()) < 36000000) { // if task within 20 hours
       console.log('new Date().getTime() - this.newTodo.dateObj.getTime(): ',  new Date().getTime() - this.newTodo.dateObj.getTime());
 
       this.filteredTodos.forEach(item => console.log('before: ' + item.time));
@@ -58,7 +59,7 @@ export class DashboardComponent implements OnInit {
       this.filteredTodos = this.filteredTodos.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
       this.filteredTodos.forEach(item => console.log('after: ' + item.time));
       this.filteredTodos.forEach(item => console.log('after: ' + item.dateObj.getTime()));
-      if (this.filteredTodos.length <= 6) {
+      if (this.filteredTodos.length < 7) {
         this.filteredTodos.push(this.newTodo);
       }
     }
