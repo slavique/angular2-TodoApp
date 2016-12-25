@@ -14,7 +14,7 @@
   </form>
 </div>
 
-<div *ngFor="let todo of todos">
+<div *ngFor="let todo of filteredTodos">
   <div class="todo" [style.margin]="todo.margin">
     <p class="todo-content">
       {{todo.title}}<br><span class="todo-time">{{todo.time}}</span>

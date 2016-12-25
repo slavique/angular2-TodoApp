@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Todo} from "../todo";
 import {TodoService} from "../todo.service";
 
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,28 +12,21 @@ import {TodoService} from "../todo.service";
 })
 export class DashboardComponent implements OnInit {
   private todos: Todo[];
+  //private sortedTodos: Todo[];
+  private filteredTodos: Todo[];
   private newTodo: Todo;
+  private margins = [{top: 5, left: 10},
+    {top: 25, left: 15},
+    {top: 41, left: 40},
+    {top: 20, left: 75},
+    {top: 5, left: 70},
+    {top: 41, left: 60}
+  ];
 
   constructor(private todoService: TodoService) {}
 
   getRandomTop(min: number, max: number) {
     let margin = Math.floor(Math.random() * (max - min + 1) + min);
-    //console.log("margin: " + margin);
-    //
-    ////checkForInterception: {
-    //  for (let i = 0; i < this.todos.length; i++){
-    //    console.log("this.todos[i].marginTop: " + this.todos[i].marginTop)
-    //
-    //    if (margin > this.todos[i].marginTop && margin < this.todos[i].marginTop + 11) {
-    //      margin += 7;
-    //      console.log("margin incremented;###############")
-    //      //continue checkForInterception;
-    //    } else if (margin + 11 > this.todos[i].marginTop && margin + 11 < this.todos[i].marginTop + 11) {
-    //      margin -= 7;
-    //      console.log("margin decremented###############")
-    //    }
-    //  }
-    ////}
     return margin;
   }
   getRandomLeft(min: number, max: number) {
@@ -39,16 +34,38 @@ export class DashboardComponent implements OnInit {
   }
 
   getTodos() {
-    this.todoService.getTodos().then((todos: Todo[]) => this.todos = todos);
+    this.todoService.getTodos().then((todos: Todo[]) => {
+      this.filteredTodos = todos.filter(index => index.dateObj.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)).splice(0, 5);
+    });
   }
 
   onSubmit(title, date, time) {
-    //console.log(date.value);
-    //console.log(time.value);
-    this.newTodo = new Todo(title.value, this.getRandomTop(1, 35), this.getRandomLeft(1, 87), date.value, time.value);
-    //console.log('this.newTodo" ' + this.newTodo.dateObj);
+    let marginTop: number = 38;
+    let marginLeft: number = 5;
+    for (let i = 0; i < this.margins.length -1; i++) {
+      if (i == this.filteredTodos.length -1) {
+        marginTop = this.margins[i].top;
+        marginLeft = this.margins[i].left;
+      }
+    }
+    this.newTodo = new Todo(title.value, marginTop, marginLeft, date.value, time.value);
+    console.log('this.newTodo.dateObj.getTime(): ' + this.newTodo.dateObj.getTime())
+    if (Math.abs(new Date().getTime() - this.newTodo.dateObj.getTime()) < 36000000) {
+      console.log('new Date().getTime() - this.newTodo.dateObj.getTime(): ',  new Date().getTime() - this.newTodo.dateObj.getTime());
+
+      this.filteredTodos.forEach(item => console.log('before: ' + item.time));
+      this.filteredTodos.forEach(item => console.log('before: ' + item.dateObj.getTime()));
+      this.filteredTodos = this.filteredTodos.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
+      this.filteredTodos.forEach(item => console.log('after: ' + item.time));
+      this.filteredTodos.forEach(item => console.log('after: ' + item.dateObj.getTime()));
+      if (this.filteredTodos.length <= 6) {
+        this.filteredTodos.push(this.newTodo);
+      }
+    }
+
     this.todoService.insertTodo(this.newTodo);
     title.value = "";
+
   }
 
   ngOnInit(): any {
