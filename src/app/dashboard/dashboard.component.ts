@@ -2,7 +2,9 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import {Todo} from "../todo";
 import {TodoService} from "../todo.service";
 
-
+const normalPeriod: number = 36000000;
+const disturbedPeriod: number = 7200000;
+const angryPeriod: number = 300000;
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,6 @@ import {TodoService} from "../todo.service";
 })
 export class DashboardComponent implements OnInit, DoCheck {
   private todos: Todo[];
-  //private sortedTodos: Todo[];
   private filteredTodos: Todo[];
   private newTodo: Todo;
   private margins = [
@@ -29,7 +30,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 
   getTodos() {
     this.todoService.getTodos().then((todos: Todo[]) => {
-      this.filteredTodos = todos.filter(index => Math.abs(new Date().getTime() - index.dateObj.getTime()) < 36000000);
+      this.filteredTodos = todos.filter(index => Math.abs(new Date().getTime() - index.dateObj.getTime()) < normalPeriod);
     });
   }
 
@@ -44,7 +45,7 @@ export class DashboardComponent implements OnInit, DoCheck {
     }
     this.newTodo = new Todo(title.value, marginTop, marginLeft, date.value, time.value);
     console.log('this.newTodo.dateObj.getTime(): ' + this.newTodo.dateObj.getTime());
-    if (Math.abs(new Date().getTime() - this.newTodo.dateObj.getTime()) < 36000000) { // if task within 20 hours
+    if (Math.abs(new Date().getTime() - this.newTodo.dateObj.getTime()) < normalPeriod) { // if task within 20 hours
       console.log('new Date().getTime() - this.newTodo.dateObj.getTime(): ',  new Date().getTime() - this.newTodo.dateObj.getTime());
 
       this.filteredTodos.forEach(item => console.log('before: ' + item.time));
@@ -64,9 +65,9 @@ export class DashboardComponent implements OnInit, DoCheck {
   ngDoCheck() {
     if (this.filteredTodos) {
       this.filteredTodos.forEach(item => {
-        if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 300000) {
+        if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < angryPeriod) {
           item.isDeadlineHere = true;
-        } else if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 7200000) {
+        } else if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < disturbedPeriod) {
           item.isDeadlineClose = true;
         }
       });
