@@ -10,6 +10,8 @@ export class Todo {
   isDeadlineHere: boolean;
   isEyesDisturbed: boolean;
   isEyesAngry: boolean;
+  isMouthDisturbed: boolean;
+  isMouthAngry: boolean;
 
   constructor(title: string, marginTop: number,  marginLeft: number, date: string, time: string) {
     this.title = title;

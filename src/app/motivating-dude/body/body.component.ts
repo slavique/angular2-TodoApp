@@ -32,25 +32,6 @@ export class BodyComponent implements AfterViewInit {
     bodyCanvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     bodyCanvasCtx.drawImage(this.bodyImage, 5, this.bodyYOffset, this.bodyWidth, this.bodyHeight, 40, 10, this.bodyWidth, this.bodyHeight);
   }
-  getNextBody() {
-    console.log(this.bodyYOffset);
-    if (this.bodyYOffset >= this.bodyHeightOnSprite * (this.bodyCount - 1)) {
-      this.bodyYOffset = 0;
-    } else {
-      this.bodyYOffset += this.bodyHeightOnSprite;
-    }
-    requestAnimationFrame(this.drawBody.bind(this))
-  }
-  getPrevBody() {
-    console.log(this.bodyYOffset);
-    if (this.bodyYOffset  == 0) {
-      this.bodyYOffset = this.bodyHeightOnSprite * (this.bodyCount - 1);
-    } else {
-      this.bodyYOffset -= this.bodyHeightOnSprite;
-    }
-    requestAnimationFrame(this.drawBody.bind(this))
-  }
-
   ngOnInit() {
   }
 

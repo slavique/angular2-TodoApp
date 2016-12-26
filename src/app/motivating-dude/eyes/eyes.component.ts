@@ -2,6 +2,8 @@ import { Component, ElementRef, Input, ViewChild, AfterViewInit, DoCheck, OnInit
 import {TodoService} from "../../todo.service";
 import {Todo} from "../../todo";
 
+var eyesState: string;
+
 @Component({
   selector: 'app-eyes',
   templateUrl: './eyes.component.html',
@@ -32,23 +34,32 @@ export class EyesComponent implements OnInit, AfterViewInit, DoCheck {
   ngAfterViewInit() {
     this.canvas = this.canvasRef.nativeElement;
     this.eyesImage = this.eyesImgRef.nativeElement;
-    this.drawEyes.bind(this.drawEyes);
+    if (eyesState == "disturbed") {
+      console.log('canvas detected change!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      this.getDisturbedEyes()
+    } else if (eyesState == "angry") {
+      this.getAngryEyes();
+    }
   }
   ngDoCheck() {
-    console.log("doCheck")
+    console.log("doCheck");
     if (this.todos) {
       this.todos.forEach(item => {
-        if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 300000 && !item.isEyesDisturbed) {
+        //if (item.dateObj.getTime() - new Date().getTime() < 60000 && Math.abs(item.dateObj.getTime() - new Date().getTime()) < 300000 && !item.isEyesAngry) {
+        if (item.isDeadlineClose && !item.isEyesDisturbed) {
           console.log('canvas detected change!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+          eyesState = "disturbed"
           item.isEyesDisturbed = true;
           this.getDisturbedEyes()
-        } else if (item.dateObj.getTime() - new Date().getTime() < 60000 && Math.abs(item.dateObj.getTime() - new Date().getTime()) < 300000 && !item.isEyesAngry) {
+        } else if (item.isDeadlineHere && !item.isEyesAngry) {
+          eyesState = "angry"
           item.isEyesAngry = true;
           this.getAngryEyes();
         }
-      });
+      })
     }
   }
+
   getDisturbedEyes() {
     this.eyesYOffset = 175;
     requestAnimationFrame(this.drawEyes.bind(this))
@@ -64,23 +75,4 @@ export class EyesComponent implements OnInit, AfterViewInit, DoCheck {
     eyesCanvasCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     eyesCanvasCtx.drawImage(this.eyesImage, 0, this.eyesYOffset, this.eyesWidth, this.eyesHeight, 132, 83, this.eyesWidth, this.eyesHeight);
   }
-  getNextEyes() {
-    console.log(this.eyesYOffset);
-    if (this.eyesYOffset >= this.eyesHeightOnSprite * (this.eyesCount - 1)) {
-      this.eyesYOffset = 0;
-    } else {
-      this.eyesYOffset += this.eyesHeightOnSprite;
-    }
-    requestAnimationFrame(this.drawEyes.bind(this))
-  }
-  getPrevEyes() {
-    console.log(this.eyesYOffset);
-    if (this.eyesYOffset  == 0) {
-      this.eyesYOffset = this.eyesHeightOnSprite * (this.eyesCount - 1);
-    } else {
-      this.eyesYOffset -= this.eyesHeightOnSprite;
-    }
-    requestAnimationFrame(this.drawEyes.bind(this))
-  }
-
 }

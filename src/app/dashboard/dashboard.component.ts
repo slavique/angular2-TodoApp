@@ -15,8 +15,9 @@ export class DashboardComponent implements OnInit, DoCheck {
   //private sortedTodos: Todo[];
   private filteredTodos: Todo[];
   private newTodo: Todo;
-  private margins = [{top: 5, left: 10},
-    {top: 25, left: 12},
+  private margins = [
+    {top: 6, left: 10},
+    {top: 26, left: 11},
     {top: 40, left: 40},
     {top: 7, left: 40},
     {top: 5, left: 70},
@@ -66,7 +67,7 @@ export class DashboardComponent implements OnInit, DoCheck {
         if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 300000) {
           item.isDeadlineHere = true;
         } else if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 7200000) {
-              item.isDeadlineClose = true;
+          item.isDeadlineClose = true;
         }
       });
     }

@@ -105,14 +105,14 @@
   border-radius: 10em;
 }
 .deadline-is-here {
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: bold;
   color: white;
   width: 15em; height: 6em;
 
   background: #CFD8DC;
-  background: linear-gradient(top, #CFD8DC 5%, grey 100%);
-  background: -webkit-linear-gradient(top, #CFD8DC 5%, grey 100%);
+  background: linear-gradient(top, red 5%, black 100%);
+  background: -webkit-linear-gradient(top, red 5%, black 100%);
   box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
   border-radius: 10em;
 
@@ -123,7 +123,7 @@
 .deadline-is-here:after, .deadline-is-here:before {
   content: '';
   position: absolute;
-  background: #CFD8DC;
+  background: red;
   z-index: -1
 }
 
