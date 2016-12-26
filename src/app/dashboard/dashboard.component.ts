@@ -15,6 +15,7 @@ const angryPeriod: number = 300000;
 export class DashboardComponent implements OnInit, DoCheck {
   private todos: Todo[];
   private filteredTodos: Todo[];
+  private todosCount: number;
   private newTodo: Todo;
   private margins = [
     {top: 6, left: 10},
@@ -31,6 +32,7 @@ export class DashboardComponent implements OnInit, DoCheck {
   getTodos() {
     this.todoService.getTodos().then((todos: Todo[]) => {
       this.filteredTodos = todos.filter(index => Math.abs(new Date().getTime() - index.dateObj.getTime()) < normalPeriod);
+      this.todosCount = this.filteredTodos.length;
     });
   }
 
@@ -60,7 +62,7 @@ export class DashboardComponent implements OnInit, DoCheck {
 
     this.todoService.insertTodo(this.newTodo);
     title.value = "";
-
+    this.todosCount = this.filteredTodos.length;
   }
   ngDoCheck() {
     if (this.filteredTodos) {

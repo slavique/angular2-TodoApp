@@ -15,6 +15,7 @@ import { BodyComponent } from './motivating-dude/body/body.component';
 import { EyesComponent } from './motivating-dude/eyes/eyes.component';
 import { MouthComponent } from './motivating-dude/mouth/mouth.component';
 import { ShirtComponent } from './motivating-dude/shirt/shirt.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ShirtComponent } from './motivating-dude/shirt/shirt.component';
     BodyComponent,
     EyesComponent,
     MouthComponent,
-    ShirtComponent
+    ShirtComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

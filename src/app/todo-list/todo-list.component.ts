@@ -16,6 +16,10 @@ export class TodoListComponent implements OnInit {
   getTodos() {
     this.todoService.getTodos().then((todos: Todo[]) => this.todos = todos);
   }
+
+  removeTodo(todo: Todo){
+    this.todos.splice(this.todos.indexOf(todo), 1)
+  }
   ngOnInit(): any {
     this.getTodos();
   }

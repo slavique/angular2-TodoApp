@@ -1,6 +1,6 @@
 <md-list *ngFor="let todo of todos">
   <md-list-item class="todo">
-    <button md-raised-button class="delete-btn">DELETE</button>
+    <button md-raised-button class="delete-btn" (click)="removeTodo(todo)">DELETE</button>
     <span class="todo-title">{{todo.title}}</span>
 
   </md-list-item>

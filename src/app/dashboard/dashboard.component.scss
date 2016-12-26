@@ -3,6 +3,15 @@
   margin-left: 36%;
   margin-top: 18%;
 }
+.tasks-descriptor{
+  //padding: 0.5em;
+}
+.tasks-count{
+  padding: 0.3em;
+  font-size: 1.5em;
+  background-color: #C6FF00;
+  border-radius: 0.2em;
+}
 .new-task__form{
   background-color: #ECEFF1;
   border: 0.5px solid grey;
@@ -27,7 +36,7 @@
   margin-left: 3em;
 }
 .todo-time{
-  color: red;
+  color: #E64A19;
   font-width: bold;
 }
 
@@ -70,7 +79,7 @@
 .deadline-is-close {
   font-size: 1.2em;
   font-weight: bold;
-
+  color: white;
   width: 15em; height: 6em;
 
   background: #CFD8DC;
@@ -111,8 +120,8 @@
   width: 15em; height: 6em;
 
   background: #CFD8DC;
-  background: linear-gradient(top, red 5%, black 100%);
-  background: -webkit-linear-gradient(top, red 5%, black 100%);
+  background: linear-gradient(top, #E64A19 5%, #212121 100%);
+  background: -webkit-linear-gradient(top, #E64A19 5%, #212121 100%);
   box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
   border-radius: 10em;
 
@@ -123,7 +132,7 @@
 .deadline-is-here:after, .deadline-is-here:before {
   content: '';
   position: absolute;
-  background: red;
+  background: #E64A19;
   z-index: -1
 }
 

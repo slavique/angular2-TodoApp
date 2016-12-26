@@ -1,4 +1,5 @@
 <div class="new-task">
+  <h2 class="tasks-descriptor">You have <span class="tasks-count">{{todosCount}}</span> upcoming tasks</h2>
   <form class="new-task__form" #myForm="ngForm" (ngSubmit)="onSubmit(newtodotitle, date, time)">
     <md-input-container>
       <input class="new-task__form--title" md-input #newtodotitle placeholder="what you plan to do?">
