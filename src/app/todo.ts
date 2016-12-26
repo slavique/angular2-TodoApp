@@ -6,6 +6,10 @@ export class Todo {
   time: string;
   dateObj : Date;
   margin: string;
+  isDeadlineClose: boolean;
+  isDeadlineHere: boolean;
+  isEyesDisturbed: boolean;
+  isEyesAngry: boolean;
 
   constructor(title: string, marginTop: number,  marginLeft: number, date: string, time: string) {
     this.title = title;

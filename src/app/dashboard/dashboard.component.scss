@@ -7,11 +7,11 @@
   background-color: #ECEFF1;
   border: 0.5px solid grey;
   border-radius: 0.3em;
-  width: 100%;
-  padding: 0.4em;
+  width: 20em;
+  padding: 0.5em;
 }
 .new-task__form--title{
-  width: 300px;
+  width: 19em;
 }
 .new-task__form--button{
   width: 100%;
@@ -37,13 +37,8 @@
   background: #f2f9fe;
   background: linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
   background: -webkit-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
-  background: -moz-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
-  background: -ms-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
-  background: -o-linear-gradient(top, #f2f9fe 5%, #d6f0fd 100%);
   box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
   border-radius: 10em;
-  -webkit-border-radius: 10em;
-  -moz-border-radius: 10em;
 
   position: absolute;
   margin: 6em auto 1.5em;
@@ -61,18 +56,88 @@
   top: -2.5em; left: 2.5em;
 
   border-radius: 5em;
-  -webkit-border-radius: 5em;
-  -moz-border-radius: 5em;
 }
 
 .todo:before {
   width: 7em; height: 7em;
   top: -4em; right: 2.5em;
-  //box-shadow: 0 0 1.2em 0.5em rgba(0, 0, 0, 0.4);
   box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
 
   border-radius: 10em;
-  -webkit-border-radius: 10em;
-  -moz-border-radius: 10em;
+
 }
 
+.deadline-is-close {
+  font-size: 1.2em;
+  font-weight: bold;
+
+  width: 15em; height: 6em;
+
+  background: #CFD8DC;
+  background: linear-gradient(top, #CFD8DC 5%, grey 100%);
+  background: -webkit-linear-gradient(top, #CFD8DC 5%, grey 100%);
+  box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
+  border-radius: 10em;
+
+  position: absolute;
+  margin: 6em auto 1.5em;
+}
+
+.deadline-is-close:after, .deadline-is-close:before {
+  content: '';
+  position: absolute;
+  background: #CFD8DC;
+  z-index: -1
+}
+
+.deadline-is-close:after {
+  width: 5em; height: 5em;
+  top: -2.5em; left: 2.5em;
+
+  border-radius: 5em;
+}
+
+.deadline-is-close:before {
+  width: 7em; height: 7em;
+  top: -4em; right: 2.5em;
+  box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
+
+  border-radius: 10em;
+}
+.deadline-is-here {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  width: 15em; height: 6em;
+
+  background: #CFD8DC;
+  background: linear-gradient(top, #CFD8DC 5%, grey 100%);
+  background: -webkit-linear-gradient(top, #CFD8DC 5%, grey 100%);
+  box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
+  border-radius: 10em;
+
+  position: absolute;
+  margin: 4em auto 1.5em;
+}
+
+.deadline-is-here:after, .deadline-is-here:before {
+  content: '';
+  position: absolute;
+  background: #CFD8DC;
+  z-index: -1
+}
+
+.deadline-is-here:after {
+  width: 5em; height: 5em;
+  top: -2.5em; left: 2.5em;
+
+  border-radius: 5em;
+}
+
+.deadline-is-here:before {
+  width: 7em; height: 7em;
+  top: -4em; right: 2.5em;
+  box-shadow: 1em 0.5em  0.5em rgba(0, 0, 0, 0.4);
+
+  border-radius: 10em;
+}

@@ -1,13 +1,13 @@
 <div class="new-task">
   <form class="new-task__form" #myForm="ngForm" (ngSubmit)="onSubmit(newtodotitle, date, time)">
     <md-input-container>
-      <input class="new-task__form--title" md-input #newtodotitle placeholder="what you plan to do">
+      <input class="new-task__form--title" md-input #newtodotitle placeholder="what you plan to do?">
     </md-input-container><br>
     <md-input-container align="end">
-      <input md-input #date type="date" placeholder="date">
+      <input md-input #date type="date" placeholder="date" required>
     </md-input-container>
     <md-input-container align="end">
-      <input md-input #time type="time"  placeholder="time">
+      <input md-input #time type="time"  placeholder="time" required>
 
     </md-input-container><br>
     <button class="new-task__form--button" type="submit" md-raised-button color="primary">add new task</button>
@@ -15,11 +15,10 @@
 </div>
 
 <div *ngFor="let todo of filteredTodos">
-  <div class="todo" [style.margin]="todo.margin">
+  <div class="todo" [ngClass]="{'deadline-is-close': todo.isDeadlineClose, 'deadline-is-here': todo.isDeadlineHere}" [style.margin]="todo.margin">
     <p class="todo-content">
       {{todo.title}}<br><span class="todo-time">{{todo.time}}</span>
     </p>
-    <span class='shadow'></span>
   </div>
 </div>
 <app-motivating-dude></app-motivating-dude>

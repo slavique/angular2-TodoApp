@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import {Todo} from "../todo";
 import {TodoService} from "../todo.service";
 
@@ -10,14 +10,14 @@ import {TodoService} from "../todo.service";
   providers: [TodoService],
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, DoCheck {
   private todos: Todo[];
   //private sortedTodos: Todo[];
   private filteredTodos: Todo[];
   private newTodo: Todo;
   private margins = [{top: 5, left: 10},
-    {top: 25, left: 15},
-    {top: 41, left: 40},
+    {top: 25, left: 12},
+    {top: 40, left: 40},
     {top: 7, left: 40},
     {top: 5, left: 70},
     {top: 39, left: 7},
@@ -26,17 +26,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(private todoService: TodoService) {}
 
-  getRandomTop(min: number, max: number) {
-    let margin = Math.floor(Math.random() * (max - min + 1) + min);
-    return margin;
-  }
-  getRandomLeft(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  }
-
   getTodos() {
     this.todoService.getTodos().then((todos: Todo[]) => {
-      this.filteredTodos = todos.filter(index => index.dateObj.setHours(0, 0, 0, 0) == new Date().setHours(0, 0, 0, 0)).splice(0, 5);
+      this.filteredTodos = todos.filter(index => Math.abs(new Date().getTime() - index.dateObj.getTime()) < 36000000);
     });
   }
 
@@ -68,7 +60,18 @@ export class DashboardComponent implements OnInit {
     title.value = "";
 
   }
+  ngDoCheck() {
+    if (this.filteredTodos) {
+      this.filteredTodos.forEach(item => {
+        if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 300000) {
+          item.isDeadlineHere = true;
+        } else if (Math.abs(item.dateObj.getTime() - new Date().getTime()) < 7200000) {
+              item.isDeadlineClose = true;
+        }
+      });
+    }
 
+  }
   ngOnInit(): any {
     this.getTodos();
   }
