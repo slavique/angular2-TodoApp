@@ -29,6 +29,6 @@ export class Todo {
     let arrTime = time.split(":");
     let dateArray = arrDate.concat(arrTime);
     //console.log('dateArray: ' + dateArray);
-    return new Date(...dateArray)
+    return new Date(dateArray[0], dateArray[1], dateArray[2], dateArray[3], dateArray[4])
   }
 }

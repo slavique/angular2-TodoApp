@@ -6,7 +6,7 @@ import { Component, ElementRef, Input, ViewChild, AfterViewInit, OnInit, DoCheck
   templateUrl: './shirt.component.html',
   styleUrls: ['./shirt.component.scss']
 })
-export class ShirtComponent implements OnInit, ngAfterViewInit, DoCheck {
+export class ShirtComponent implements OnInit, AfterViewInit, DoCheck {
 
   @ViewChild('shirtcanvas') canvasRef: ElementRef;
   @ViewChild('shirtimg') shirtImgRef: ElementRef;
